@@ -571,6 +571,10 @@ get_packages() {
                         ((packages == 0)) && packages="$((packages+=$(pkg list | wc -l)))"
                 esac
             fi
+
+            if type -p flatpak >/dev/null; then
+                packages="$((packages+="$(flatpak list | wc -l)"))"
+            fi
         ;;
 
         "Mac OS X" | "MINIX")
